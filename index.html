@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redwood Horizon — Rooted in care. Built around people.</title>
+    <meta name="description" content="Whole-person, community-based wraparound services in Northern California. Helping people facing barriers to stability stay connected to care and community.">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "NGO",
+        "name": "Redwood Horizon",
+        "description": "Whole-person, community-based wraparound services in Northern California",
+        "url": "https://redwoodhorizon.org",
+        "areaServed": [
+            "Humboldt County, CA",
+            "Del Norte County, CA",
+            "Mendocino County, CA",
+            "Trinity County, CA",
+            "Shasta County, CA"
+        ],
+        "serviceType": [
+            "Wraparound Support Services",
+            "Care Coordination",
+            "Behavioral Health Support",
+            "Housing Support",
+            "Benefits Navigation"
+        ],
+        "slogan": "Rooted in care. Built around people."
+    }
+    </script>
+
+    <style>
+        :root {
+            --deep-redwood-green: #3B5E4A;
+            --dawn-gold: #D4A853;
+            --muted-sage: #8FA88A;
+            --fog-gray: #D8DED9;
+            --fog-light: #E8EDE9;
+            --white: #FFFFFF;
+            --text-dark: #2D2D2D;
+            --text-light: #F5F5F5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--white);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 8px;
+            background: var(--deep-redwood-green);
+            color: var(--white);
+            padding: 8px 16px;
+            text-decoration: none;
+            z-index: 1000;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        .skip-link:focus { top: 8px; }
+
+        /* === Navigation === */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            border-bottom: 1px solid rgba(143, 168, 138, 0.2);
+            z-index: 100;
+            padding: 0 24px;
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--deep-redwood-green);
+        }
+        .nav-logo svg {
+            width: 28px;
+            height: 28px;
+            flex-shrink: 0;
+        }
+        .nav-logo-text {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-weight: 700;
+            font-size: 20px;
+            color: var(--deep-redwood-green);
+            letter-spacing: -0.01em;
+        }
+        .nav-links {
+            display: none;
+            list-style: none;
+            gap: 28px;
+            align-items: center;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.2s;
+            padding: 4px 0;
+        }
+        .nav-links a:hover { color: var(--deep-redwood-green); }
+        .nav-links a[aria-current="page"] { color: var(--deep-redwood-green); }
+.hamburger {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            min-height: 44px;
+            min-width: 44px;
+            align-items: center;
+            justify-content: center;
+        }
+        .hamburger span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--deep-redwood-green);
+            border-radius: 1px;
+            transition: 0.3s;
+        }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 72px;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            border-bottom: 1px solid rgba(143, 168, 138, 0.2);
+            padding: 20px 24px;
+            z-index: 99;
+            box-shadow: 0 8px 24px rgba(59, 94, 74, 0.08);
+        }
+        .mobile-nav.active { display: block; }
+        .mobile-nav ul {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        .mobile-nav li { margin-bottom: 12px; }
+        .mobile-nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 17px;
+            display: block;
+            padding: 8px 0;
+        }
+
+        /* === Buttons === */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            text-align: center;
+            transition: all 0.2s ease;
+            border: 2px solid transparent;
+            min-height: 48px;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background: var(--deep-redwood-green);
+            color: var(--white);
+            border-color: var(--deep-redwood-green);
+        }
+        .btn-primary:hover {
+            background: #2D4738;
+            border-color: #2D4738;
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--deep-redwood-green);
+            border-color: var(--deep-redwood-green);
+        }
+        .btn-outline:hover {
+            background: var(--deep-redwood-green);
+            color: var(--white);
+        }
+
+        /* === Sections === */
+        .section { padding: 72px 24px; }
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+        }
+        .section-title {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: clamp(28px, 3.5vw, 36px);
+            font-weight: 700;
+            color: var(--deep-redwood-green);
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--text-dark);
+            max-width: 640px;
+            line-height: 1.6;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+/* === Hero === */
+        .hero {
+            background: linear-gradient(135deg, var(--fog-light) 0%, #EFF3F0 50%, var(--muted-sage) 100%);
+            padding: 120px 24px 80px;
+            text-align: center;
+        }
+        .hero h1 {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 700;
+            color: var(--deep-redwood-green);
+            margin-bottom: 20px;
+            line-height: 1.15;
+            letter-spacing: -0.01em;
+        }
+        .hero-subhead {
+            font-size: clamp(18px, 2vw, 22px);
+            color: var(--text-dark);
+            margin-bottom: 40px;
+            max-width: 580px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.5;
+        }
+        .hero-ctas {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            align-items: center;
+        }
+
+        /* === Impact Strip (solid band, no arc) === */
+        .impact-strip {
+            background: var(--deep-redwood-green);
+            padding: 56px 24px;
+        }
+        .impact-grid {
+            max-width: 1120px;
+            margin: 0 auto;
+            display: grid;
+            gap: 32px;
+            grid-template-columns: 1fr;
+        }
+        .impact-item {
+            text-align: center;
+            color: var(--white);
+        }
+        .impact-item p {
+            font-size: 18px;
+            line-height: 1.6;
+            font-weight: 400;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        /* === What We Do === */
+        .what-we-do {
+            background: var(--fog-light);
+        }
+        .what-we-do .section-title {
+            text-align: center;
+        }
+        .what-we-do .section-subtitle {
+            text-align: center;
+            margin: 0 auto 48px;
+        }
+        .tiles {
+            display: grid;
+            gap: 28px;
+            grid-template-columns: 1fr;
+        }
+        .tile {
+            background: var(--white);
+            padding: 40px 32px;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(59, 94, 74, 0.06);
+            transition: box-shadow 0.3s ease;
+        }
+        .tile:hover { box-shadow: 0 4px 24px rgba(59, 94, 74, 0.1); }
+        .tile-icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 20px;
+        }
+        .tile-icon svg {
+            width: 48px;
+            height: 48px;
+        }
+        .tile h3 {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--deep-redwood-green);
+            margin-bottom: 12px;
+        }
+        .tile p {
+            color: var(--text-dark);
+            line-height: 1.65;
+            margin-bottom: 20px;
+        }
+        .tile-link {
+            color: var(--deep-redwood-green);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: color 0.2s;
+        }
+        .tile-link:hover { color: var(--dawn-gold); }
+
+        /* === Who We're For === */
+        .who-were-for {
+            background: var(--white);
+            text-align: center;
+        }
+        .who-were-for .section-subtitle {
+            margin: 0 auto;
+        }
+        .who-were-for p {
+            font-size: 18px;
+            line-height: 1.7;
+            max-width: 780px;
+            margin: 0 auto;
+            color: var(--text-dark);
+        }
+/* === Service Area === */
+        .service-area {
+            background: var(--fog-light);
+            text-align: center;
+        }
+        .counties {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 32px;
+        }
+        .county-tag {
+            background: var(--white);
+            color: var(--deep-redwood-green);
+            padding: 10px 22px;
+            border-radius: 24px;
+            font-weight: 500;
+            font-size: 15px;
+            border: 1.5px solid var(--deep-redwood-green);
+            transition: all 0.2s;
+        }
+        .county-tag:hover {
+            background: var(--deep-redwood-green);
+            color: var(--white);
+        }
+
+        /* === CTA Strip === */
+        .cta-strip {
+            background: var(--white);
+            text-align: center;
+            padding: 64px 24px;
+        }
+        .cta-strip h2 {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: clamp(28px, 3.5vw, 36px);
+            color: var(--deep-redwood-green);
+            margin-bottom: 32px;
+        }
+        .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            align-items: center;
+        }
+
+        /* === Footer === */
+        .footer {
+            background: var(--deep-redwood-green);
+            color: var(--text-light);
+            padding: 64px 24px 32px;
+        }
+        .footer-content {
+            max-width: 1120px;
+            margin: 0 auto;
+            display: grid;
+            gap: 40px;
+            grid-template-columns: 1fr;
+        }
+        .footer-brand { text-align: center; }
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 12px;
+        }
+        .footer-logo svg {
+            width: 28px;
+            height: 28px;
+            flex-shrink: 0;
+        }
+        .footer-logo-text {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-weight: 700;
+            font-size: 20px;
+            color: var(--text-light);
+            letter-spacing: -0.01em;
+        }
+        .footer-tagline {
+            font-size: 16px;
+            font-style: italic;
+            opacity: 0.85;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        .footer-columns {
+            display: grid;
+            gap: 32px;
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+        .footer-column h4 {
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--dawn-gold);
+            margin-bottom: 14px;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+        }
+        .footer-column ul {
+            list-style: none;
+        }
+        .footer-column li { margin-bottom: 8px; }
+        .footer-column a {
+            color: var(--text-light);
+            text-decoration: none;
+            opacity: 0.85;
+            font-size: 15px;
+            transition: opacity 0.2s;
+        }
+        .footer-column a:hover { opacity: 1; }
+
+        .footer-legal {
+            max-width: 1120px;
+            margin: 40px auto 0;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            text-align: center;
+            font-size: 14px;
+            opacity: 0.75;
+            line-height: 1.7;
+        }
+        .footer-legal a {
+            color: var(--text-light);
+            text-decoration: none;
+            opacity: 0.75;
+            transition: opacity 0.2s;
+        }
+        .footer-legal a:hover { opacity: 1; }
+        .footer-legal .legal-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center;
+            margin-top: 8px;
+        }
+/* === Responsive === */
+        @media (min-width: 640px) {
+            .hero-ctas { flex-direction: row; justify-content: center; }
+            .cta-buttons { flex-direction: row; justify-content: center; }
+        }
+
+        @media (min-width: 768px) {
+            .nav-links { display: flex; }
+            .hamburger { display: none; }
+            .impact-grid { grid-template-columns: repeat(3, 1fr); }
+            .tiles { grid-template-columns: repeat(3, 1fr); }
+            .footer-columns { grid-template-columns: repeat(3, 1fr); text-align: left; }
+            .footer-brand { text-align: left; }
+            .footer-logo { justify-content: flex-start; }
+            .footer-tagline { text-align: left; }
+        }
+
+        @media (min-width: 1024px) {
+            .section { padding: 96px 24px; }
+            .hero { padding: 140px 24px 100px; }
+            .impact-strip { padding: 64px 24px; }
+        }
+
+        /* === Accessibility === */
+        a:focus-visible,
+        button:focus-visible,
+        .btn:focus-visible {
+            outline: 3px solid var(--dawn-gold);
+            outline-offset: 2px;
+        }
+
+        @media (prefers-contrast: high) {
+            .tile { border: 2px solid var(--deep-redwood-green); }
+            .county-tag { border-width: 2px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .fade-in { transition: none; }
+            * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <a href="#main" class="skip-link">Skip to main content</a>
+
+    <!-- ============ NAV ============ -->
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <a href="#" class="nav-logo" aria-label="Redwood Horizon Home">
+                <img src="/logo-icon.svg" alt="" width="32" height="32" style="flex-shrink:0; display:block;" aria-hidden="true">
+                <span class="nav-logo-text">Redwood Horizon</span>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="#" aria-current="page">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#get-support">Get Support</a></li>
+                <li><a href="#partners">For Partners</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+            <button class="hamburger" aria-label="Toggle mobile menu" aria-expanded="false" id="hamburger-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <div class="mobile-nav" id="mobile-nav">
+            <ul>
+                <li><a href="#" aria-current="page">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#get-support">Get Support</a></li>
+                <li><a href="#partners">For Partners</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a href="#get-support" class="btn btn-primary">Get Support</a>
+        </div>
+    </nav>
+
+    <!-- ============ MAIN ============ -->
+    <main id="main">
+
+        <!-- ===== HERO ===== -->
+        <section class="hero">
+            <div class="container fade-in">
+                <h1>Rooted in care. Built around people.</h1>
+                <p class="hero-subhead">Whole-person, community-based wraparound services for people facing barriers to stability.</p>
+                <div class="hero-ctas">
+                    <a href="#get-support" class="btn btn-primary">Get Support</a>
+                    <a href="#services" class="btn btn-outline">Learn About Our Work</a>
+                </div>
+            </div>
+        </section>
+<!-- ===== IMPACT STRIP (solid band, no decorative arc) ===== -->
+        <section class="impact-strip" aria-label="Our approach">
+            <div class="impact-grid">
+                <div class="impact-item fade-in">
+                    <p>We help people navigate housing, health, and the systems in between.</p>
+                </div>
+                <div class="impact-item fade-in">
+                    <p>Northern California communities, with you — wherever you are.</p>
+                </div>
+                <div class="impact-item fade-in">
+                    <p>Complex needs don't fit neatly into one program. Neither do we.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== WHAT WE DO ===== -->
+        <section class="section what-we-do" id="services">
+            <div class="container">
+                <div class="fade-in" style="text-align:center;">
+                    <h2 class="section-title">What We Do</h2>
+                    <p class="section-subtitle">We provide whole-person, community-based wraparound services that help people facing barriers to stability stay connected to care and community.</p>
+                </div>
+
+                <div class="tiles">
+                    <!-- Tile 1: Whole-Person Support -->
+                    <div class="tile fade-in">
+                        <div class="tile-icon">
+                            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <!-- Leaf icon -->
+                                <path d="M36 12C28 8 16 14 12 24C8 34 12 44 12 44C12 44 22 40 32 34C40 28 44 18 36 12Z" fill="#8FA88A" opacity="0.25"/>
+                                <path d="M36 12C28 8 16 14 12 24C8 34 12 44 12 44C12 44 22 40 32 34C40 28 44 18 36 12Z" stroke="#8FA88A" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M24 24L32 16" stroke="#3B5E4A" stroke-width="2.5" stroke-linecap="round"/>
+                                <path d="M12 44L24 32" stroke="#3B5E4A" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <h3>Whole-Person Support</h3>
+                        <p>Care coordination across health, behavioral health, housing, benefits, employment, and re-entry. We start with what matters most to you — not what fits a checkbox.</p>
+                        <a href="#services" class="tile-link">Learn More &rarr;</a>
+                    </div>
+
+                    <!-- Tile 2: Community-Based Care -->
+                    <div class="tile fade-in">
+                        <div class="tile-icon">
+                            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <!-- House icon -->
+                                <path d="M6 24L24 8L42 24" stroke="#8FA88A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M14 20V40H34V20" stroke="#8FA88A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <rect x="20" y="28" width="8" height="12" rx="1" fill="#8FA88A" opacity="0.3" stroke="#3B5E4A" stroke-width="2" stroke-linejoin="round"/>
+                                <path d="M24 8L30 13.5V10" stroke="#3B5E4A" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <h3>Community-Based Care</h3>
+                        <p>Services happen where you live and where you need them. We come to you — in your home, your community, or wherever is safest and most comfortable.</p>
+                        <a href="#services" class="tile-link">Learn More &rarr;</a>
+                    </div>
+<!-- Tile 3: Persistent Engagement -->
+                    <div class="tile fade-in">
+                        <div class="tile-icon">
+                            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <!-- Infinity / interlocking rings -->
+                                <path d="M32 14C37 14 41 18 41 24C41 30 37 34 32 34C27 34 24 30 24 24C24 18 21 14 16 14C11 14 7 18 7 24C7 30 11 34 16 34" stroke="#8FA88A" stroke-width="2.5" stroke-linecap="round"/>
+                                <path d="M16 14C21 14 24 18 24 24" stroke="#3B5E4A" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M24 24C24 30 27 34 32 34" stroke="#3B5E4A" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <h3>Persistent Engagement</h3>
+                        <p>We stay with people through complexity, on their timeline. We don't disappear when things get hard. When one door closes, we find another way.</p>
+                        <a href="#services" class="tile-link">Learn More &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== WHO WE'RE FOR ===== -->
+        <section class="section who-were-for" id="about">
+            <div class="container fade-in">
+                <h2 class="section-title">Who We're For</h2>
+                <p>Redwood Horizon is for people with complex needs who are navigating more than one challenge at once — housing instability, a behavioral health condition, a return from incarceration, or difficulty accessing care and benefits. If the system hasn't worked for you, we're here to help figure out a different path. We serve adults and families across Northern California who need someone in their corner, no matter how many systems they're navigating.</p>
+            </div>
+        </section>
+
+        <!-- ===== SERVICE AREA ===== -->
+        <section class="section service-area" id="contact">
+            <div class="container fade-in">
+                <h2 class="section-title">Service Area</h2>
+                <p class="section-subtitle" style="margin: 0 auto;">Currently serving rural Northern California communities</p>
+                <div class="counties">
+                    <span class="county-tag">Humboldt</span>
+                    <span class="county-tag">Del Norte</span>
+                    <span class="county-tag">Mendocino</span>
+                    <span class="county-tag">Trinity</span>
+                    <span class="county-tag">Shasta</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== CTA STRIP ===== -->
+        <section class="cta-strip">
+            <div class="container fade-in">
+                <h2>Ready to connect?</h2>
+                <div class="cta-buttons">
+                    <a href="#get-support" class="btn btn-primary">Get Support</a>
+                    <a href="#contact" class="btn btn-outline">Contact Us</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img src="/logo-icon-white.svg" alt="" width="32" height="32" style="flex-shrink:0; display:block;" aria-hidden="true">
+                    <span class="footer-logo-text">Redwood Horizon</span>
+                </div>
+                <p class="footer-tagline">Rooted in care. Built around people.</p>
+            </div>
+<div class="footer-columns">
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#get-support">Get Support</a></li>
+                        <li><a href="#partners">For Partners</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Service Area</h4>
+                    <ul>
+                        <li><span style="opacity:0.8;">Humboldt County</span></li>
+                        <li><span style="opacity:0.8;">Del Norte County</span></li>
+                        <li><span style="opacity:0.8;">Mendocino County</span></li>
+                        <li><span style="opacity:0.8;">Trinity County</span></li>
+                        <li><span style="opacity:0.8;">Shasta County</span></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="#contact">Contact Us</a></li>
+                        <li><a href="#partners">Partner With Us</a></li>
+                        <li><a href="#about">Careers</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-legal">
+            <p>&copy; 2026 Redwood Horizon. California Nonprofit Public Benefit Corporation. 501(c)(3) pending.</p>
+            <div class="legal-links">
+                <a href="#">Accessibility</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation Toggle
+        const hamburger = document.getElementById('hamburger-btn');
+        const mobileNav = document.getElementById('mobile-nav');
+
+        hamburger.addEventListener('click', () => {
+            const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
+            hamburger.setAttribute('aria-expanded', !isExpanded);
+            mobileNav.classList.toggle('active');
+        });
+
+        // Close mobile nav when clicking links
+        document.querySelectorAll('.mobile-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        // Fade-in Animation with Intersection Observer
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -40px 0px' };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Keyboard: Escape closes mobile nav
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileNav.classList.contains('active')) {
+                mobileNav.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+                hamburger.focus();
+            }
+        });
+// Initialize fade-in for elements already in view
+        window.addEventListener('load', () => {
+            document.querySelectorAll('.fade-in').forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    el.classList.add('visible');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

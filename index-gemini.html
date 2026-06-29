@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redwood Horizon - Rooted in Community, Built Around People</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Source+Serif+4:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Accessibility: Skip Link */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #D4A853;
+            color: #5C4033;
+            padding: 8px;
+            z-index: 1000;
+            transition: top 0.3s;
+        }
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Base Styles */
+        :root {
+            --primary-green: #3B5E4A;
+            --background-gray: #D8DED9;
+            --link-blue-gray: #7A9BAE;
+            --accent-gold: #D4A853;
+            --text-brown: #5C4033;
+            --supporting-sage: #8FA88A;
+            --white: #FFFFFF;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--text-brown);
+            background-color: var(--white);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Source Serif 4', serif;
+            color: var(--primary-green);
+            line-height: 1.2;
+            margin-bottom: 0.5em;
+        }
+
+        h1 { font-size: 2.5em; }
+        h2 { font-size: 2em; }
+        h3 { font-size: 1.5em; }
+
+        a {
+            color: var(--link-blue-gray);
+            text-decoration: none;
+            transition: color 0.3s ease, background-color 0.3s ease;
+        }
+
+        a:hover, a:focus {
+            color: var(--accent-gold);
+            outline: 2px solid var(--accent-gold);
+            outline-offset: 2px;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-family: 'Inter', sans-serif;
+            font-weight: bold;
+            font-size: 16px;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+            min-height: 44px; /* Touch target */
+            min-width: 44px; /* Touch target */
+        }
+
+        .btn-primary {
+            background-color: var(--accent-gold);
+            color: var(--white);
+        }
+
+        .btn-primary:hover, .btn-primary:focus {
+            background-color: #C29A4A; /* Slightly darker gold */
+            color: var(--white);
+            outline: 2px solid var(--accent-gold);
+            outline-offset: 2px;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary-green);
+            border: 2px solid var(--primary-green);
+        }
+
+        .btn-secondary:hover, .btn-secondary:focus {
+            background-color: var(--primary-green);
+            color: var(--white);
+            outline: 2px solid var(--primary-green);
+            outline-offset: 2px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header/Nav */
+        .header {
+            background-color: var(--white);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-family: 'Georgia', serif;
+            font-weight: bold;
+            font-size: 1.8em;
+            color: var(--primary-green);
+            white-space: nowrap;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: none; /* Hidden by default on mobile */
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: var(--white);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .nav-menu.active {
+            display: flex;
+        }
+
+        .nav-menu li {
+            margin: 10px 0;
+        }
+
+        .nav-menu a, .nav-cta-mobile a {
+            color: var(--text-brown);
+            padding: 10px 15px;
+            display: block;
+            border-radius: 4px;
+            min-height: 44px; /* Touch target */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-menu a:hover, .nav-menu a:focus, .nav-cta-mobile a:hover, .nav-cta-mobile a:focus {
+            background-color: var(--background-gray);
+            color: var(--primary-green);
+        }
+
+        .nav-cta-desktop {
+            display: none; /* Hidden on mobile */
+        }
+
+        .hamburger {
+            display: flex; /* Show on mobile */
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 25px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 1001;
+            min-height: 44px; /* Touch target */
+            min-width: 44px; /* Touch target */
+            align-items: center;
+        }
+
+        .hamburger .bar {
+            width: 30px;
+            height: 3px;
+            background-color: var(--primary-green);
+            transition: all 0.3s ease-in-out;
+            border-radius: 2px;
+        }
+
+        .hamburger.active .bar:nth-child(1) {
+            transform: translateY(11px) rotate(45deg);
+        }
+
+        .hamburger.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active .bar:nth-child(3) {
+            transform: translateY(-11px) rotate(-45deg);
+        }
+
+        .lang-toggle {
+            margin-left: 15px;
+            font-size: 0.9em;
+            white-space: nowrap;
+            min-height: 44px; /* Touch target */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 10px;
+        }
+
+        .lang-toggle a {
+            color: var(--text-brown);
+            padding: 5px 8px;
+            border-radius: 4px;
+        }
+
+        .lang-toggle a.active {
+            background-color: var(--supporting-sage);
+            color: var(--white);
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: var(--background-gray);
+            padding: 60px 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero .tagline {
+            font-family: 'Inter', sans-serif;
+            font-weight: bold;
+            color: var(--primary-green);
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        .hero h1 {
+            font-size: 2.8em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--primary-green);
+        }
+
+        .hero .subhead {
+            font-size: 1.2em;
+            color: var(--text-brown);
+            margin-bottom: 30px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Impact Strip */
+        .impact-strip {
+            background-color: var(--primary-green);
+            color: var(--white);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .impact-strip ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .impact-strip li {
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+
+        /* What We Do */
+        .what-we-do {
+            background-color: var(--background-gray);
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .what-we-do h2 {
+            margin-bottom: 40px;
+            color: var(--primary-green);
+        }
+
+        .tiles-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .tile {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .tile .icon {
+            font-size: 2.5em;
+            color: var(--accent-gold);
+            margin-bottom: 15px;
+            line-height: 1;
+        }
+
+        .tile h3 {
+            color: var(--primary-green);
+            margin-bottom: 10px;
+        }
+
+        .tile p {
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .tile a {
+            color: var(--primary-green);
+            font-weight: bold;
+            display: inline-block;
+            padding: 10px 0; /* For touch target */
+            min-height: 44px; /* Touch target */
+            display: flex;
+            align-items: center;
+        }
+
+        .tile a:hover, .tile a:focus {
+            color: var(--accent-gold);
+        }
+
+        /* Who We Serve */
+        .who-we-serve {
+            background-color: var(--white);
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .who-we-serve h2 {
+            margin-bottom: 30px;
+            color: var(--primary-green);
+        }
+
+        .who-we-serve p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1em;
+            color: var(--text-brown);
+        }
+
+        /* Service Area */
+        .service-area {
+            background-color: var(--primary-green);
+            color: var(--white);
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .service-area h2 {
+            color: var(--white);
+            margin-bottom: 30px;
+        }
+
+        .county-tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .county-tag {
+            background-color: var(--supporting-sage);
+            color: var(--white);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9em;
+            min-height: 44px; /* Touch target */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .map-placeholder {
+            background-color: var(--background-gray);
+            width: 100%;
+            max-width: 800px;
+            height: 300px;
+            margin: 0 auto;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-brown);
+            font-weight: bold;
+            font-size: 1.2em;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Footer CTA Strip */
+        .footer-cta-strip {
+            background-color: var(--background-gray);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .footer-cta-strip h2 {
+            color: var(--primary-green);
+            margin-bottom: 25px;
+        }
+
+        .footer-cta-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--primary-green);
+            color: var(--white);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo-tagline {
+            text-align: center;
+        }
+
+        .footer .logo {
+            color: var(--white);
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .footer .tagline {
+            font-size: 0.9em;
+            color: var(--white);
+        }
+
+        .footer-links-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            text-align: center;
+        }
+
+        .footer-column h4 {
+            color: var(--accent-gold);
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-column li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column a {
+            color: var(--white);
+            font-size: 0.95em;
+            padding: 5px 0; /* For touch target */
+            display: inline-block;
+            min-height: 44px; /* Touch target */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-column a:hover, .footer-column a:focus {
+            color: var(--accent-gold);
+            background-color: transparent;
+        }
+
+        .footer-connect-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .footer-connect-icons a {
+            font-size: 1.5em;
+            color: var(--white);
+            min-width: 44px; /* Touch target */
+            min-height: 44px; /* Touch target */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 1px solid transparent;
+        }
+
+        .footer-connect-icons a:hover, .footer-connect-icons a:focus {
+            color: var(--accent-gold);
+            border-color: var(--accent-gold);
+        }
+
+        .footer-lang-toggle {
+            margin-top: 20px;
+            font-size: 0.9em;
+        }
+
+        .footer-lang-toggle a {
+            color: var(--white);
+            padding: 5px 8px;
+            border-radius: 4px;
+            min-height: 44px; /* Touch target */
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-lang-toggle a.active {
+            background-color: var(--supporting-sage);
+            color: var(--white);
+        }
+
+        .footer-legal {
+            margin-top: 30px;
+            font-size: 0.85em;
+            color: var(--background-gray);
+        }
+
+        .footer-legal a {
+            color: var(--background-gray);
+            text-decoration: underline;
+        }
+
+        .footer-legal a:hover, .footer-legal a:focus {
+            color: var(--accent-gold);
+        }
+
+        /* Media Queries for Desktop */
+        @media (min-width: 768px) {
+            .header {
+                padding: 15px 40px;
+            }
+
+            .nav-menu {
+                display: flex;
+                flex-direction: row;
+                position: static;
+                box-shadow: none;
+                padding: 0;
+                width: auto;
+                background-color: transparent;
+                align-items: center;
+            }
+
+            .nav-menu li {
+                margin: 0 15px;
+            }
+
+            .nav-menu a {
+                padding: 8px 12px;
+                color: var(--text-brown);
+                min-height: auto;
+            }
+
+            .nav-menu a:hover, .nav-menu a:focus {
+                background-color: transparent;
+                color: var(--primary-green);
+                outline: 2px solid var(--primary-green);
+                outline-offset: 2px;
+            }
+
+            .nav-cta-desktop {
+                display: block;
+                margin-left: 20px;
+            }
+
+            .nav-cta-mobile {
+                display: none;
+            }
+
+            .hamburger {
+                display: none;
+            }
+
+            .lang-toggle {
+                margin-left: 20px;
+            }
+
+            .hero {
+                flex-direction: row;
+                text-align: left;
+                padding: 80px 40px;
+                justify-content: center;
+            }
+
+            .hero-content {
+                text-align: left;
+                flex: 1;
+                max-width: 50%;
+            }
+
+            .hero h1 {
+                font-size: 3.5em;
+            }
+
+            .hero .subhead {
+                font-size: 1.3em;
+            }
+
+            .hero-actions {
+                flex-direction: row;
+                justify-content: flex-start;
+            }
+
+            .hero-image {
+                flex: 1;
+                max-width: 50%;
+            }
+
+            .impact-strip ul {
+                flex-direction: row;
+                justify-content: space-around;
+                gap: 30px;
+            }
+
+            .impact-strip li {
+                flex: 1;
+                font-size: 1.2em;
+            }
+
+            .tiles-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .footer-content {
+                flex-direction: row;
+                text-align: left;
+                justify-content: space-between;
+                align-items: flex-start;
+                padding: 0 20px;
+            }
+
+            .footer-logo-tagline {
+                text-align: left;
+                flex: 1;
+            }
+
+            .footer-links-grid {
+                grid-template-columns: repeat(3, 1fr);
+                flex: 2;
+                text-align: left;
+            }
+
+            .footer-column h4 {
+                text-align: left;
+            }
+
+            .footer-column a {
+                justify-content: flex-start;
+            }
+
+            .footer-connect-icons {
+                justify-content: flex-start;
+            }
+
+            .footer-lang-toggle {
+                margin-top: 0;
+                text-align: right;
+            }
+
+            .footer-legal {
+                text-align: center;
+                margin-top: 50px;
+                grid-column: 1 / -1; /* Span all columns in grid */
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .hero h1 {
+                font-size: 4em;
+            }
+        }
+    </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Redwood Horizon",
+      "url": "https://www.redwoodhorizon.org",
+      "logo": "https://www.redwoodhorizon.org/images/logo.png",
+      "description": "Full-service wraparound support for whole-person stability in Northern California.",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+1-800-555-1212",
+        "contactType": "Customer Service"
+      },
+      "sameAs": [
+        "https://www.facebook.com/redwoodhorizon",
+        "https://www.twitter.com/redwoodhorizon",
+        "https://www.linkedin.com/company/redwoodhorizon"
+      ]
+    }
+    </script>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header class="header">
+        <div class="logo">Redwood Horizon</div>
+        <nav aria-label="Main navigation">
+            <button class="hamburger" aria-label="Open main menu" aria-expanded="false" id="hamburger-button">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#home" aria-current="page">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#get-support">Get Support</a></li>
+                <li><a href="#for-partners">For Partners</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li class="nav-cta-mobile"><a href="#get-support" class="btn-primary">Get Support</a></li>
+                <li class="lang-toggle">
+                    <a href="#" class="active" aria-label="English language">EN</a> /
+                    <a href="#" aria-label="Spanish language">ES</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="nav-cta-desktop">
+            <a href="#get-support" class="btn-primary">Get Support</a>
+        </div>
+        <div class="lang-toggle nav-lang-desktop">
+            <a href="#" class="active" aria-label="English language">EN</a> /
+            <a href="#" aria-label="Spanish language">ES</a>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="hero">
+            <div class="hero-content">
+                <p class="tagline">Redwood Horizon</p>
+                <h1>Rooted in community. Built around people.</h1>
+                <p class="subhead">Full-service wraparound support for whole-person stability.</p>
+                <div class="hero-actions">
+                    <a href="#get-support" class="btn-primary">Get Support</a>
+                    <a href="#about" class="btn-secondary">Learn About Our Work</a>
+                </div>
+            </div>
+            <img src="https://placehold.co/800x600/3B5E4A/D8DED9?text=Hero" alt="A person receiving support from a community worker, symbolizing care and connection." class="hero-image">
+        </section>
+
+        <section class="impact-strip">
+            <div class="container">
+                <h2 class="visually-hidden">Our Impact Focus</h2>
+                <ul>
+                    <li>Addressing housing and health disparities</li>
+                    <li>Serving Northern California communities</li>
+                    <li>Supporting individuals with complex needs</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="what-we-do" id="services">
+            <div class="container">
+                <h2>What We Do</h2>
+                <div class="tiles-container">
+                    <div class="tile">
+                        <span class="icon" aria-hidden="true">🌱</span>
+                        <h3>Whole-Person Support</h3>
+                        <p>We address all aspects of an individual's well-being, from physical health to mental health, social connections, and economic stability.</p>
+                        <a href="#">Learn More &rarr;</a>
+                    </div>
+                    <div class="tile">
+                        <span class="icon" aria-hidden="true">🏡</span>
+                        <h3>Community-Based Care</h3>
+                        <p>Our services are delivered within the communities we serve, ensuring accessibility and cultural relevance for all participants.</p>
+                        <a href="#">Learn More &rarr;</a>
+                    </div>
+                    <div class="tile">
+                        <span class="icon" aria-hidden="true">🤝</span>
+                        <h3>Persistent Engagement</h3>
+                        <p>We commit to long-term relationships, providing consistent support and advocacy through every challenge and success.</p>
+                        <a href="#">Learn More &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="who-we-serve">
+            <div class="container">
+                <h2>Who We Serve</h2>
+                <p>We serve individuals and families facing complex challenges, including homelessness, chronic health conditions, mental health struggles, and substance use disorders. Our person-first approach ensures that every individual receives tailored support that respects their unique journey and empowers them towards stability and thriving.</p>
+            </div>
+        </section>
+
+        <section class="service-area">
+            <div class="container">
+                <h2>Our Service Area</h2>
+                <div class="county-tags">
+                    <span class="county-tag">Humboldt County</span>
+                    <span class="county-tag">Del Norte County</span>
+                    <span class="county-tag">Mendocino County</span>
+                    <span class="county-tag">Trinity County</span>
+                    <span class="county-tag">Shasta County</span>
+                </div>
+                <div class="map-placeholder" aria-label="Map showing service area in Northern California">
+                    Map Placeholder
+                </div>
+            </div>
+        </section>
+
+        <section class="footer-cta-strip">
+            <div class="container">
+                <h2>Ready to connect?</h2>
+                <div class="footer-cta-actions">
+                    <a href="#get-support" class="btn-primary">Get Support</a>
+                    <a href="#contact" class="btn-secondary">Contact Us</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-logo-tagline">
+                <div class="logo">Redwood Horizon</div>
+                <p class="tagline">Rooted in community. Built around people.</p>
+            </div>
+            <div class="footer-links-grid">
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#services">Our Services</a></li>
+                        <li><a href="#impact">Our Impact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Get Involved</h4>
+                    <ul>
+                        <li><a href="#get-support">Get Support</a></li>
+                        <li><a href="#for-partners">For Partners</a></li>
+                        <li><a href="#careers">Careers</a></li>
+                        <li><a href="#donate">Donate</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="#contact">Contact Us</a></li>
+                        <li><a href="#news">News & Updates</a></li>
+                        <li>
+                            <div class="footer-connect-icons">
+                                <a href="#" aria-label="Facebook"><span aria-hidden="true">f</span></a>
+                                <a href="#" aria-label="Twitter"><span aria-hidden="true">t</span></a>
+                                <a href="#" aria-label="LinkedIn"><span aria-hidden="true">in</span></a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-lang-toggle">
+                <a href="#" class="active" aria-label="English language">EN</a> /
+                <a href="#" aria-label="Spanish language">ES</a>
+            </div>
+            <div class="footer-legal">
+                <p>&copy; 2023 Redwood Horizon. All rights reserved. <a href="#privacy">Privacy Policy</a> | <a href="#terms">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburgerButton = document.getElementById('hamburger-button');
+            const navMenu = document.getElementById('nav-menu');
+
+            hamburgerButton.addEventListener('click', function() {
+                const isExpanded = this.getAttribute('aria-expanded') === 'true' || false;
+                this.setAttribute('aria-expanded', !isExpanded);
+                navMenu.classList.toggle('active');
+                this.classList.toggle('active');
+            });
+
+            // Close menu when a nav link is clicked (for mobile)
+            navMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navMenu.classList.contains('active')) {
+                        hamburgerButton.click(); // Simulate click to close menu
+                    }
+                });
+            });
+
+            // Close menu if window is resized above mobile breakpoint
+            window.addEventListener('resize', function() {
+                if (window.innerWidth >= 768 && navMenu.classList.contains('active')) {
+                    hamburgerButton.click(); // Simulate click to close menu
+                }
+            });
+        });
+    </script>
+</body>
+</html>
