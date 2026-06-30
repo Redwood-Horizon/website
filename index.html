@@ -359,34 +359,7 @@
             margin: 0 auto;
             color: var(--text-dark);
         }
-/* === Service Area === */
-        .service-area {
-            background: var(--fog-light);
-            text-align: center;
-        }
-        .counties {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            justify-content: center;
-            margin-top: 32px;
-        }
-        .county-tag {
-            background: var(--white);
-            color: var(--deep-redwood-green);
-            padding: 10px 22px;
-            border-radius: 24px;
-            font-weight: 500;
-            font-size: 15px;
-            border: 1.5px solid var(--deep-redwood-green);
-            transition: all 0.2s;
-        }
-        .county-tag:hover {
-            background: var(--deep-redwood-green);
-            color: var(--white);
-        }
-
-        /* === Footer === */
+/* === Footer === */
         .footer {
             background: var(--deep-redwood-green);
             color: var(--text-light);
@@ -505,7 +478,6 @@
 
         @media (prefers-contrast: high) {
             .tile { border: 2px solid var(--deep-redwood-green); }
-            .county-tag { border-width: 2px; }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -632,21 +604,6 @@
             <div class="container fade-in">
                 <h2 class="section-title">Who We're For</h2>
                 <p>Redwood Horizon is for people with complex needs who are navigating more than one challenge at once — housing instability, a behavioral health condition, a return from incarceration, or difficulty accessing care and benefits. If the system hasn't worked for you, we're here to help figure out a different path. We serve adults and families across Northern California who need someone in their corner, no matter how many systems they're navigating.</p>
-            </div>
-        </section>
-
-        <!-- ===== SERVICE AREA ===== -->
-        <section class="section service-area" id="contact">
-            <div class="container fade-in">
-                <h2 class="section-title">Service Area</h2>
-                <p class="section-subtitle" style="margin: 0 auto;">Currently serving rural Northern California communities</p>
-                <div class="counties">
-                    <span class="county-tag">Humboldt</span>
-                    <span class="county-tag">Del Norte</span>
-                    <span class="county-tag">Mendocino</span>
-                    <span class="county-tag">Trinity</span>
-                    <span class="county-tag">Shasta</span>
-                </div>
             </div>
         </section>
 
