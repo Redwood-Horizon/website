@@ -294,10 +294,14 @@
             background: var(--white);
             padding: 40px 32px;
             border-radius: 12px;
-            box-shadow: 0 2px 12px rgba(59, 94, 74, 0.06);
-            transition: box-shadow 0.3s ease;
+            border: 1px solid var(--fog-gray);
+            box-shadow: 0 2px 12px rgba(59, 94, 74, 0.08);
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
         }
-        .tile:hover { box-shadow: 0 4px 24px rgba(59, 94, 74, 0.1); }
+        .tile:hover {
+            box-shadow: 0 6px 28px rgba(59, 94, 74, 0.14);
+            border-color: var(--muted-sage);
+        }
         .tile-icon {
             width: 48px;
             height: 48px;
