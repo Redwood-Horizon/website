@@ -266,28 +266,12 @@
             margin-right: auto;
             line-height: 1.5;
         }
-        /* === Impact Strip (solid band, no arc) === */
-        .impact-strip {
-            background: var(--deep-redwood-green);
-            padding: 56px 24px;
-        }
-        .impact-grid {
-            max-width: 1120px;
-            margin: 0 auto;
-            display: grid;
-            gap: 32px;
-            grid-template-columns: 1fr;
-        }
-        .impact-item {
-            text-align: center;
-            color: var(--white);
-        }
-        .impact-item p {
-            font-size: 18px;
-            line-height: 1.6;
-            font-weight: 400;
-            max-width: 480px;
-            margin: 0 auto;
+        /* === Gold Divider Strip === */
+        .gold-strip {
+            background: var(--dawn-gold);
+            height: 8px;
+            padding: 0;
+            border: none;
         }
 
         /* === What We Do === */
@@ -454,7 +438,6 @@
         @media (min-width: 768px) {
             .nav-links { display: flex; }
             .hamburger { display: none; }
-            .impact-grid { grid-template-columns: repeat(3, 1fr); }
             .tiles { grid-template-columns: repeat(3, 1fr); }
             .footer-columns { grid-template-columns: repeat(3, 1fr); text-align: left; }
             .footer-brand { text-align: left; }
@@ -465,7 +448,6 @@
         @media (min-width: 1024px) {
             .section { padding: 96px 24px; }
             .hero { padding: 140px 24px 100px; }
-            .impact-strip { padding: 64px 24px; }
         }
 
         /* === Accessibility === */
@@ -526,20 +508,7 @@
                 <p class="hero-subhead">Whole-person, community-based wraparound services for people facing barriers to stability.</p>
             </div>
         </section>
-<!-- ===== IMPACT STRIP (solid band, no decorative arc) ===== -->
-        <section class="impact-strip" aria-label="Our approach">
-            <div class="impact-grid">
-                <div class="impact-item fade-in">
-                    <p>We help people navigate housing, health, and the systems in between.</p>
-                </div>
-                <div class="impact-item fade-in">
-                    <p>Northern California communities, with you — wherever you are.</p>
-                </div>
-                <div class="impact-item fade-in">
-                    <p>Complex needs don't fit neatly into one program. Neither do we.</p>
-                </div>
-            </div>
-        </section>
+<div class="gold-strip" aria-hidden="true"></div>
 
         <!-- ===== WHAT WE DO ===== -->
         <section class="section what-we-do" id="services">
