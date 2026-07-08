@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services — Redwood Horizon</title>
+    <meta name="description" content="Care coordination, behavioral health, housing support, benefits navigation, re-entry, employment connection, and daily stability support across rural Northern California.">
+    <link rel="canonical" href="https://redwoodhorizon.org/services.html">
+    <link rel="icon" type="image/svg+xml" href="/logo-icon.svg">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Services — Redwood Horizon">
+    <meta property="og:description" content="Care coordination, behavioral health, housing support, benefits navigation, re-entry, employment connection, and daily stability support across rural Northern California.">
+    <meta property="og:url" content="https://redwoodhorizon.org/services.html">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://redwoodhorizon.org/logo-icon.svg">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "NGO",
+        "name": "Redwood Horizon",
+        "description": "Whole-person, community-based wraparound services in Northern California",
+        "url": "https://redwoodhorizon.org",
+        "areaServed": [
+            "Humboldt County, CA",
+            "Del Norte County, CA",
+            "Mendocino County, CA",
+            "Trinity County, CA",
+            "Shasta County, CA"
+        ],
+        "serviceType": [
+            "Wraparound Support Services",
+            "Care Coordination",
+            "Behavioral Health Support",
+            "Housing Support",
+            "Benefits Navigation"
+        ],
+        "slogan": "Rooted in care. Built around people."
+    }
+    </script>
+
+    <style>
+        :root {
+            --deep-redwood-green: #3B5E4A;
+            --dawn-gold: #D4A853;
+            --muted-sage: #8FA88A;
+            --fog-gray: #D8DED9;
+            --fog-light: #E8EDE9;
+            --white: #FFFFFF;
+            --text-dark: #2D2D2D;
+            --text-light: #F5F5F5;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--white);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .skip-link {
+            position: absolute; top: -40px; left: 8px;
+            background: var(--deep-redwood-green); color: var(--white);
+            padding: 8px 16px; text-decoration: none; z-index: 1000;
+            border-radius: 4px; font-weight: 600;
+        }
+        .skip-link:focus { top: 8px; }
+
+        /* === Navigation === */
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0;
+            background: var(--white);
+            border-bottom: 1px solid rgba(143, 168, 138, 0.2);
+            z-index: 100; padding: 0 24px;
+        }
+        .nav-container {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; align-items: center;
+            justify-content: space-between; height: 72px;
+        }
+        .nav-logo {
+            display: flex; align-items: center; gap: 10px;
+            text-decoration: none; color: var(--deep-redwood-green);
+        }
+        .nav-logo svg { width: 28px; height: 28px; flex-shrink: 0; }
+        .nav-logo-text {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-weight: 700; font-size: 20px;
+            color: var(--deep-redwood-green); letter-spacing: -0.01em;
+        }
+        .nav-links { display: none; list-style: none; gap: 28px; align-items: center; }
+        .nav-links a {
+            text-decoration: none; color: var(--text-dark);
+            font-weight: 500; font-size: 15px;
+            transition: color 0.2s; padding: 4px 0;
+        }
+        .nav-links a:hover { color: var(--deep-redwood-green); }
+        .nav-links a[aria-current="page"] { color: var(--deep-redwood-green); }
+        .hamburger {
+            display: flex; flex-direction: column; gap: 5px;
+            background: none; border: none; cursor: pointer;
+            padding: 10px; min-height: 44px; min-width: 44px;
+            align-items: center; justify-content: center;
+        }
+        .hamburger span {
+            display: block; width: 22px; height: 2px;
+            background: var(--deep-redwood-green); border-radius: 1px;
+            transition: 0.3s;
+        }
+        .mobile-nav {
+            display: none; position: fixed; top: 72px; left: 0; right: 0;
+            background: var(--white);
+            border-bottom: 1px solid rgba(143, 168, 138, 0.2);
+            padding: 20px 24px; z-index: 99;
+            box-shadow: 0 8px 24px rgba(59, 94, 74, 0.08);
+        }
+        .mobile-nav.active { display: block; }
+        .mobile-nav ul { list-style: none; margin-bottom: 20px; }
+        .mobile-nav li { margin-bottom: 12px; }
+        .mobile-nav a {
+            text-decoration: none; color: var(--text-dark);
+            font-weight: 500; font-size: 17px;
+            display: block; padding: 8px 0;
+        }
+
+        /* === Buttons === */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 14px 28px; border-radius: 8px; text-decoration: none;
+            font-weight: 600; font-size: 15px; text-align: center;
+            transition: all 0.2s ease; border: 2px solid transparent;
+            min-height: 48px; cursor: pointer;
+        }
+        .btn-primary {
+            background: var(--deep-redwood-green); color: var(--white);
+            border-color: var(--deep-redwood-green);
+        }
+        .btn-primary:hover { background: #2D4738; border-color: #2D4738; }
+        .btn-outline {
+            background: transparent; color: var(--deep-redwood-green);
+            border-color: var(--deep-redwood-green);
+        }
+        .btn-outline:hover {
+            background: var(--deep-redwood-green); color: var(--white);
+        }
+
+        /* === Sections === */
+        .section { padding: 72px 24px; }
+        .container { max-width: 1120px; margin: 0 auto; }
+        .section-title {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: clamp(28px, 3.5vw, 36px);
+            font-weight: 700; color: var(--deep-redwood-green);
+            margin-bottom: 16px; line-height: 1.2;
+        }
+        .section-subtitle {
+            font-size: 18px; color: var(--text-dark);
+            max-width: 640px; line-height: 1.6;
+        }
+
+        .fade-in {
+            opacity: 0; transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        /* === Page Hero === */
+        .page-hero {
+            background: linear-gradient(135deg, var(--fog-light) 0%, #EFF3F0 50%, var(--muted-sage) 100%);
+            padding: 120px 24px 80px; text-align: center;
+        }
+        .page-hero h1 {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: clamp(36px, 5vw, 52px); font-weight: 700;
+            color: var(--deep-redwood-green); margin-bottom: 20px;
+            line-height: 1.15; letter-spacing: -0.01em;
+        }
+        .page-hero p {
+            font-size: clamp(18px, 2vw, 22px); color: var(--text-dark);
+            max-width: 580px; margin: 0 auto; line-height: 1.5;
+        }
+
+        .gold-strip { background: var(--dawn-gold); height: 8px; padding: 0; border: none; }
+
+        /* === Services Intro === */
+        .services-intro { background: var(--white); }
+        .services-intro p {
+            max-width: 780px; margin: 0 auto 40px;
+            font-size: 18px; line-height: 1.7; text-align: center;
+        }
+
+        /* === Service Grid === */
+        .service-grid {
+            display: grid; gap: 24px;
+            grid-template-columns: 1fr;
+        }
+        .service-card {
+            background: var(--white); padding: 32px 28px;
+            border-radius: 12px; border: 1px solid var(--fog-gray);
+            box-shadow: 0 2px 12px rgba(59, 94, 74, 0.08);
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .service-card:hover {
+            box-shadow: 0 6px 28px rgba(59, 94, 74, 0.14);
+            border-color: var(--muted-sage);
+        }
+        .service-card h3 {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 20px; font-weight: 700;
+            color: var(--deep-redwood-green); margin-bottom: 10px;
+        }
+        .service-card p {
+            color: var(--text-dark); line-height: 1.65; font-size: 15px;
+        }
+
+        /* === Who We Serve === */
+        .who-we-serve { background: var(--fog-light); }
+        .who-we-serve-content {
+            max-width: 780px; margin: 0 auto;
+            font-size: 18px; line-height: 1.7;
+        }
+        .who-we-serve-content p { margin-bottom: 20px; }
+        .population-list {
+            list-style: none; margin: 24px 0;
+        }
+        .population-list li {
+            padding: 10px 0 10px 28px; position: relative;
+            border-bottom: 1px solid var(--fog-gray);
+        }
+        .population-list li:last-child { border-bottom: none; }
+        .population-list li::before {
+            content: "•"; position: absolute; left: 0;
+            color: var(--deep-redwood-green); font-weight: 700;
+        }
+
+        /* === How It Works === */
+        .how-it-works { background: var(--white); }
+        .steps {
+            display: grid; gap: 28px;
+            grid-template-columns: 1fr;
+            max-width: 780px; margin: 0 auto;
+        }
+        .step {
+            padding: 32px 28px;
+            border-left: 4px solid var(--dawn-gold);
+            background: var(--fog-light);
+            border-radius: 0 12px 12px 0;
+        }
+        .step-number {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 14px; font-weight: 700;
+            color: var(--dawn-gold); text-transform: uppercase;
+            letter-spacing: 0.05em; margin-bottom: 6px;
+        }
+        .step h3 {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 22px; font-weight: 700;
+            color: var(--deep-redwood-green); margin-bottom: 8px;
+        }
+        .step p {
+            color: var(--text-dark); line-height: 1.65;
+        }
+
+        /* === FAQ === */
+        .faq-section { background: var(--fog-light); }
+        .faq-list {
+            max-width: 780px; margin: 0 auto;
+        }
+        .faq-item {
+            background: var(--white); padding: 24px 28px;
+            border-radius: 8px; margin-bottom: 16px;
+            border: 1px solid var(--fog-gray);
+        }
+        .faq-item strong {
+            display: block;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 17px; color: var(--deep-redwood-green);
+            margin-bottom: 6px;
+        }
+        .faq-item p {
+            color: var(--text-dark); line-height: 1.65;
+        }
+
+        /* === Footer === */
+        .footer {
+            background: var(--deep-redwood-green); color: var(--text-light);
+            padding: 64px 24px 32px;
+        }
+        .footer-content {
+            max-width: 1120px; margin: 0 auto;
+            display: grid; gap: 40px; grid-template-columns: 1fr;
+        }
+        .footer-brand { text-align: center; }
+        .footer-logo {
+            display: flex; align-items: center; gap: 10px;
+            justify-content: center; margin-bottom: 12px;
+        }
+        .footer-logo svg { width: 28px; height: 28px; flex-shrink: 0; }
+        .footer-logo-text {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-weight: 700; font-size: 20px;
+            color: var(--text-light); letter-spacing: -0.01em;
+        }
+        .footer-tagline {
+            font-size: 16px; font-style: italic; opacity: 0.85;
+            margin-bottom: 24px; text-align: center;
+        }
+        .footer-columns {
+            display: grid; gap: 32px; grid-template-columns: 1fr;
+            text-align: center;
+        }
+        .footer-column h4 {
+            font-weight: 600; font-size: 15px; color: var(--dawn-gold);
+            margin-bottom: 14px; letter-spacing: 0.02em; text-transform: uppercase;
+        }
+        .footer-column ul { list-style: none; }
+        .footer-column li { margin-bottom: 8px; }
+        .footer-column a {
+            color: var(--text-light); text-decoration: none;
+            opacity: 0.85; font-size: 15px; transition: opacity 0.2s;
+        }
+        .footer-column a:hover { opacity: 1; }
+        .footer-legal {
+            max-width: 1120px; margin: 40px auto 0; padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            text-align: center; font-size: 14px; opacity: 0.75; line-height: 1.7;
+        }
+
+        /* === Responsive === */
+        @media (min-width: 768px) {
+            .nav-links { display: flex; }
+            .hamburger { display: none; }
+            .service-grid { grid-template-columns: repeat(2, 1fr); }
+            .steps { grid-template-columns: 1fr; }
+            .footer-columns { grid-template-columns: repeat(3, 1fr); text-align: left; }
+            .footer-brand { text-align: left; }
+            .footer-logo { justify-content: flex-start; }
+            .footer-tagline { text-align: left; }
+        }
+        @media (min-width: 1024px) {
+            .section { padding: 96px 24px; }
+            .page-hero { padding: 140px 24px 100px; }
+        }
+
+        /* === Accessibility === */
+        a:focus-visible, button:focus-visible, .btn:focus-visible {
+            outline: 3px solid var(--dawn-gold); outline-offset: 2px;
+        }
+        @media (prefers-contrast: high) {
+            .service-card { border: 2px solid var(--deep-redwood-green); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .fade-in { transition: none; }
+            * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <a href="#main" class="skip-link">Skip to main content</a>
+
+    <!-- ============ NAV ============ -->
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo" aria-label="Redwood Horizon Home">
+                <img src="/logo-icon.svg" alt="" width="32" height="32" style="flex-shrink:0; display:block;" aria-hidden="true">
+                <span class="nav-logo-text">Redwood Horizon</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html" aria-current="page">Services</a></li>
+                <li><a href="get-support.html">Get Support</a></li>
+                <li><a href="partners.html">For Partners</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <button class="hamburger" aria-label="Toggle mobile menu" aria-expanded="false" id="hamburger-btn">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <div class="mobile-nav" id="mobile-nav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html" aria-current="page">Services</a></li>
+                <li><a href="get-support.html">Get Support</a></li>
+                <li><a href="partners.html">For Partners</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ============ MAIN ============ -->
+    <main id="main">
+
+        <!-- ===== PAGE HERO ===== -->
+        <section class="page-hero">
+            <div class="container fade-in">
+                <h1>Our Services</h1>
+                <p>Whole-person, community-based wraparound support — tailored to what matters most to you.</p>
+            </div>
+        </section>
+        <div class="gold-strip" aria-hidden="true"></div>
+
+        <!-- ===== WHAT WE DO ===== -->
+        <section class="section services-intro">
+            <div class="container">
+                <div class="fade-in" style="text-align:center;">
+                    <h2 class="section-title">What We Do</h2>
+                </div>
+                <p class="fade-in">Redwood Horizon provides whole-person, community-based wraparound services that help people facing barriers to stability stay connected to care and community, and move toward self-determination. Not every person needs support in every area. We start with what matters most to you.</p>
+
+                <div class="service-grid fade-in">
+                    <div class="service-card">
+                        <h3>Care Coordination</h3>
+                        <p>Connecting you to health care, following up after hospitalizations, making sure your providers are communicating with each other.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Behavioral Health Support</h3>
+                        <p>Linking you to mental health and substance use services, and staying connected through treatment.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Housing Support</h3>
+                        <p>Finding and securing housing, preventing eviction, navigating landlord relationships.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Benefits Navigation</h3>
+                        <p>Helping you apply for and keep benefits — Medi-Cal, SSI/SSDI, CalFresh, and others.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Re-entry Support</h3>
+                        <p>Coordinating services during the transition back to community after incarceration.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Employment Connection</h3>
+                        <p>Connecting you to employment services and vocational support at the pace that works for you.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Daily Stability</h3>
+                        <p>The practical support that holds everything together — transportation, appointments, paperwork, follow-through.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== WHO WE SERVE ===== -->
+        <section class="section who-we-serve">
+            <div class="container fade-in">
+                <h2 class="section-title" style="text-align:center;">Who We Serve</h2>
+                <div class="who-we-serve-content">
+                    <p>Redwood Horizon is for people navigating more than one challenge at once — people whose needs don't fit neatly into a single program or system.</p>
+
+                    <ul class="population-list">
+                        <li>People experiencing homelessness or housing instability</li>
+                        <li>People living with serious mental health conditions</li>
+                        <li>People with substance use challenges</li>
+                        <li>People returning from incarceration</li>
+                        <li>Transition-aged youth and young adults facing instability</li>
+                        <li>People at risk of hospitalization or institutional placement</li>
+                        <li>People with complex health and social needs who have struggled to get consistent care</li>
+                    </ul>
+
+                    <p><em>You don't have to have everything figured out to reach out. That's what we're here for.</em></p>
+
+                    <p><strong>Service area:</strong> Humboldt, Del Norte, Mendocino, Trinity, and Shasta counties.</p>
+                    <p><strong>Language access:</strong> We provide services in English and Spanish. If you need support in another language, contact us and we will do our best to help.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== HOW IT WORKS ===== -->
+        <section class="section how-it-works">
+            <div class="container fade-in">
+                <h2 class="section-title" style="text-align:center;">How It Works</h2>
+                <p class="section-subtitle" style="text-align:center; margin:0 auto 40px;">There's no wrong way to reach out. We meet people where they are.</p>
+
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">Step 1</div>
+                        <h3>Reach Out</h3>
+                        <p>Call, email, or fill out the contact form. You can also be referred by a provider or caseworker. There's no wrong way to connect.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">Step 2</div>
+                        <h3>Connect</h3>
+                        <p>We'll have a conversation about what's going on and what kind of support would help. No pressure, no judgment — just listening and figuring out next steps together.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">Step 3</div>
+                        <h3>Get Started</h3>
+                        <p>We build a plan together, based on your goals and what you need most right now. You set the pace — we'll be there through every step.</p>
+                    </div>
+                </div>
+
+                <div style="text-align:center; margin-top:40px;">
+                    <a href="get-support.html" class="btn btn-primary">Get Support</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== FAQ ===== -->
+        <section class="section faq-section">
+            <div class="container fade-in">
+                <h2 class="section-title" style="text-align:center;">Common Questions</h2>
+
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <strong>Do I need a referral to get support?</strong>
+                        <p>No. You can reach out directly — for yourself or someone you care about. Providers and caseworkers can also refer someone through the same contact form.</p>
+                    </div>
+                    <div class="faq-item">
+                        <strong>What counties do you serve?</strong>
+                        <p>We currently serve Humboldt, Del Norte, Mendocino, Trinity, and Shasta counties. If you're outside this area, contact us and we'll do our best to help connect you to local resources.</p>
+                    </div>
+                    <div class="faq-item">
+                        <strong>How do I know if Redwood Horizon can help me?</strong>
+                        <p>If you're facing barriers to stability and need someone to help coordinate care, navigate systems, or just be in your corner — reach out. We'll figure out together whether we're the right fit.</p>
+                    </div>
+                    <div class="faq-item">
+                        <strong>What happens after I reach out?</strong>
+                        <p>Someone from our team will follow up to learn more about what's going on and discuss how we might be able to help. This first conversation is free and there's no commitment.</p>
+                    </div>
+                    <div class="faq-item">
+                        <strong>Do you provide services in Spanish?</strong>
+                        <p>Sí, ofrecemos servicios en inglés y español. If you need support in another language, let us know and we will do our best to help.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img src="/logo-icon-white.svg" alt="" width="32" height="32" style="flex-shrink:0; display:block;" aria-hidden="true">
+                    <span class="footer-logo-text">Redwood Horizon</span>
+                </div>
+                <p class="footer-tagline">Rooted in care. Built around people.</p>
+            </div>
+            <div class="footer-columns">
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="get-support.html">Get Support</a></li>
+                        <li><a href="partners.html">For Partners</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Service Area</h4>
+                    <ul>
+                        <li><span style="opacity:0.8;">Humboldt County</span></li>
+                        <li><span style="opacity:0.8;">Del Norte County</span></li>
+                        <li><span style="opacity:0.8;">Mendocino County</span></li>
+                        <li><span style="opacity:0.8;">Trinity County</span></li>
+                        <li><span style="opacity:0.8;">Shasta County</span></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="mailto:contact@redwoodhorizon.org">contact@redwoodhorizon.org</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-legal">
+            <p>&copy; 2026 Redwood Horizon. California Nonprofit Public Benefit Corporation.</p>
+        </div>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger-btn');
+        const mobileNav = document.getElementById('mobile-nav');
+        hamburger.addEventListener('click', () => {
+            const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
+            hamburger.setAttribute('aria-expanded', !isExpanded);
+            mobileNav.classList.toggle('active');
+        });
+        document.querySelectorAll('.mobile-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+            });
+        });
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -40px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) { entry.target.classList.add('visible'); }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+                }
+            });
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileNav.classList.contains('active')) {
+                mobileNav.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+                hamburger.focus();
+            }
+        });
+        window.addEventListener('load', () => {
+            document.querySelectorAll('.fade-in').forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    el.classList.add('visible');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
