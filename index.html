@@ -266,6 +266,75 @@
             margin-right: auto;
             line-height: 1.5;
         }
+        .hero-ctas {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            align-items: center;
+            justify-content: center;
+        }
+        /* === Impact Strip === */
+        .impact-strip {
+            background: var(--deep-redwood-green);
+            padding: 48px 24px;
+            text-align: center;
+        }
+        .impact-strip p {
+            color: var(--text-light);
+            font-size: 18px;
+            line-height: 1.7;
+            max-width: 780px;
+            margin: 0 auto;
+        }
+        .impact-strip p + p {
+            margin-top: 16px;
+        }
+        .impact-strip .impact-icon {
+            color: var(--dawn-gold);
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+        /* === Service Area === */
+        .service-area-home {
+            background: var(--fog-light);
+            text-align: center;
+        }
+        .service-area-home .counties {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin: 24px 0;
+        }
+        .service-area-home .counties span {
+            background: var(--white);
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: 1px solid var(--fog-gray);
+            font-size: 15px;
+            color: var(--text-dark);
+        }
+        /* === Footer CTA Strip === */
+        .footer-cta-strip {
+            background: linear-gradient(135deg, var(--deep-redwood-green) 0%, #2D4738 100%);
+            padding: 64px 24px;
+            text-align: center;
+        }
+        .footer-cta-strip h2 {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: clamp(28px, 3.5vw, 36px);
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+        .footer-cta-strip .ctas {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            align-items: center;
+            justify-content: center;
+        }
         /* === Gold Divider Strip === */
         .gold-strip {
             background: var(--dawn-gold);
@@ -436,7 +505,9 @@
             .nav-links { display: flex; }
             .hamburger { display: none; }
             .tiles { grid-template-columns: repeat(3, 1fr); }
+            .hero-ctas { flex-direction: row; }
             .footer-columns { grid-template-columns: repeat(3, 1fr); text-align: left; }
+            .footer-cta-strip .ctas { flex-direction: row; }
             .footer-brand { text-align: left; }
             .footer-logo { justify-content: flex-start; }
             .footer-tagline { text-align: left; }
@@ -513,9 +584,23 @@
             <div class="container fade-in">
                 <h1>Rooted in care. Built around people.</h1>
                 <p class="hero-subhead">Whole-person, community-based wraparound services for people facing barriers to stability.</p>
+                <div class="hero-ctas">
+                    <a href="get-support.html" class="btn btn-primary">Get Support</a>
+                    <a href="services.html" class="btn btn-outline">Learn About Our Work</a>
+                </div>
             </div>
         </section>
 <div class="gold-strip" aria-hidden="true"></div>
+
+        <!-- ===== IMPACT STRIP ===== -->
+        <section class="impact-strip fade-in">
+            <div class="container">
+                <div class="impact-icon" aria-hidden="true">✦</div>
+                <p>We help people navigate housing, health, and the systems in between.</p>
+                <p>Northern California communities — with you, wherever you are.</p>
+                <p>Complex needs don't fit neatly into one program. Neither do we.</p>
+            </div>
+        </section>
 
         <!-- ===== WHAT WE DO ===== -->
         <section class="section what-we-do" id="services">
@@ -539,6 +624,7 @@
                         </div>
                         <h3>Whole-Person Support</h3>
                         <p>Care coordination across health, behavioral health, housing, benefits, employment, and re-entry. We start with what matters most to you — not what fits a checkbox.</p>
+                        <a href="services.html" class="tile-link">Learn More →</a>
                         
                     </div>
 
@@ -555,6 +641,7 @@
                         </div>
                         <h3>Community-Based Care</h3>
                         <p>Services happen where you live and where you need them. We come to you — in your home, your community, or wherever is safest and most comfortable.</p>
+                        <a href="services.html" class="tile-link">Learn More →</a>
                         
                     </div>
 <!-- Tile 3: Persistent Engagement -->
@@ -569,6 +656,7 @@
                         </div>
                         <h3>Persistent Engagement</h3>
                         <p>We stay with people through complexity, on their timeline. We don't disappear when things get hard. When one door closes, we find another way.</p>
+                        <a href="services.html" class="tile-link">Learn More →</a>
                         
                     </div>
                 </div>
@@ -584,7 +672,33 @@
             </div>
         </section>
 
+        <!-- ===== SERVICE AREA ===== -->
+        <section class="section service-area-home">
+            <div class="container fade-in">
+                <h2 class="section-title">Service Area</h2>
+                <p>Currently serving Humboldt, Del Norte, Mendocino, Trinity, and Shasta counties.</p>
+                <div class="counties">
+                    <span>Humboldt County</span>
+                    <span>Del Norte County</span>
+                    <span>Mendocino County</span>
+                    <span>Trinity County</span>
+                    <span>Shasta County</span>
+                </div>
+            </div>
+        </section>
+
         </main>
+
+    <!-- ============ FOOTER CTA ============ -->
+    <section class="footer-cta-strip">
+        <div class="container fade-in">
+            <h2>Ready to connect?</h2>
+            <div class="ctas">
+                <a href="get-support.html" class="btn btn-primary" style="border-color:var(--white);">Get Support</a>
+                <a href="contact.html" class="btn btn-outline" style="color:var(--white); border-color:var(--white);">Contact Us</a>
+            </div>
+        </div>
+    </section>
 
     <!-- ============ FOOTER ============ -->
     <footer class="footer">
@@ -606,6 +720,7 @@
                         <li><a href="get-support.html">Get Support</a></li>
                         <li><a href="partners.html">For Partners</a></li>
                         <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#">Careers</a></li>
                     </ul>
                 </div>
 
@@ -631,6 +746,11 @@
 
         <div class="footer-legal">
             <p>&copy; 2026 Redwood Horizon. California Nonprofit Public Benefit Corporation.</p>
+            <p style="margin-top:12px;">
+                <a href="#">Privacy Policy</a> &middot;
+                <a href="#">Accessibility Statement</a> &middot;
+                <a href="#">English</a> / <a href="#">Español</a>
+            </p>
         </div>
     </footer>
 
