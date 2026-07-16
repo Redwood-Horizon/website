@@ -281,6 +281,9 @@
             .nav-links { display: flex; }
             .hamburger { display: none; }
             .footer-columns { grid-template-columns: repeat(3, 1fr); text-align: left; }
+            /* Quick Links: 2-column grid on desktop, balances footer height */
+            .footer-column ul { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 24px; }
+            .footer-column li { margin-bottom: 0; }
             .footer-brand { text-align: left; }
             .footer-logo { justify-content: flex-start; }
             .footer-tagline { text-align: left; }
