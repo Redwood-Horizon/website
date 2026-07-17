@@ -277,23 +277,64 @@
         /* === Impact Strip === */
         .impact-strip {
             background: var(--deep-redwood-green);
-            padding: 48px 24px;
+            padding: 56px 24px;
             text-align: center;
         }
-        .impact-strip p {
-            color: var(--text-light);
-            font-size: 18px;
-            line-height: 1.7;
-            max-width: 780px;
-            margin: 0 auto;
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            max-width: 1040px;
         }
-        .impact-strip p + p {
-            margin-top: 16px;
+        .impact-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        .impact-strip .impact-icon {
+        .impact-icon {
             color: var(--dawn-gold);
             font-size: 24px;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
+        }
+        .impact-label {
+            color: var(--dawn-gold);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin: 0 0 10px;
+        }
+        .impact-text {
+            color: var(--text-light);
+            font-size: 17px;
+            line-height: 1.6;
+            margin: 0;
+            max-width: 300px;
+        }
+        @media (max-width: 767px) {
+            .impact-grid {
+                grid-template-columns: 1fr;
+                gap: 36px;
+                max-width: 420px;
+            }
+        }
+        /* Staggered scroll-reveal (respects prefers-reduced-motion) */
+        .impact-card.fade-in {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 0.6s ease var(--delay, 0s), transform 0.6s ease var(--delay, 0s);
+        }
+        .impact-card.fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.6s ease var(--delay, 0s), transform 0.6s ease var(--delay, 0s);
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .impact-card.fade-in {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
         }
         /* === Footer CTA Strip === */
         .footer-cta-strip {
@@ -589,12 +630,23 @@
 <div class="gold-strip" aria-hidden="true"></div>
 
         <!-- ===== IMPACT STRIP ===== -->
-        <section class="impact-strip fade-in">
-            <div class="container">
-                <div class="impact-icon" aria-hidden="true">✦</div>
-                <p>We help people navigate housing, health, and the systems in between.</p>
-                <p>Northern California communities, with you, wherever you are.</p>
-                <p>Complex needs don't fit neatly into one program. Neither do we.</p>
+        <section class="impact-strip">
+            <div class="container impact-grid">
+                <div class="impact-card fade-in" style="--delay: 0s;">
+                    <div class="impact-icon" aria-hidden="true">✦</div>
+                    <p class="impact-label">What we do</p>
+                    <p class="impact-text">We help people navigate housing, health, and the systems in between.</p>
+                </div>
+                <div class="impact-card fade-in" style="--delay: 0.12s;">
+                    <div class="impact-icon" aria-hidden="true">✦</div>
+                    <p class="impact-label">Where we serve</p>
+                    <p class="impact-text">Northern California communities, with you, wherever you are.</p>
+                </div>
+                <div class="impact-card fade-in" style="--delay: 0.24s;">
+                    <div class="impact-icon" aria-hidden="true">✦</div>
+                    <p class="impact-label">Our approach</p>
+                    <p class="impact-text">Complex needs don't fit neatly into one program. Neither do we.</p>
+                </div>
             </div>
         </section>
 
