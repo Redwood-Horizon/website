@@ -21,6 +21,9 @@
         .nav-container { max-width:1200px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; height:88px; }
         .nav-logo { display:flex; flex-direction: row-reverse; align-items:center; gap:10px; text-decoration:none; color:var(--deep-redwood-green); }
         .nav-logo img { width: 56px; height: 56px; flex-shrink: 0; }
+        @media (min-width: 768px) {
+            .nav-logo img { width: 72px; height: 72px; }
+        }
         .nav-logo-text { font-family:Georgia,'Times New Roman',serif; font-weight:700; font-size: 26px; color:var(--deep-redwood-green); letter-spacing: -0.02em; }
         .nav-links { display:none; list-style:none; gap:28px; align-items:center; }
         .nav-links a { text-decoration:none; color:var(--text-dark); font-weight:500; font-size:15px; transition:color 0.2s; padding:4px 0; }
