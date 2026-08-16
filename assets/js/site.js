@@ -6,8 +6,8 @@
     <header class="site-header" data-header>
       <div class="shell nav-shell">
         <a class="brand" href="index.html" aria-label="Redwood Horizon home">
-          <img src="assets/img/redwood-mark.svg" alt="" width="38" height="48">
-          <span>Redwood<br>Horizon</span>
+          <img src="assets/img/redwood-mark.svg" alt="" width="38" height="48" aria-hidden="true">
+          <span class="brand-text">Redwood Horizon</span>
         </a>
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
           <span class="sr-only">Open menu</span><span></span><span></span><span></span>
