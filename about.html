@@ -512,7 +512,20 @@
             .fade-in { transition: none; }
             * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
         }
-    </style>
+    
+        /* === Nav CTA button === */
+        .nav-cta {
+            display: inline-flex; align-items: center; justify-content: center;
+            background: var(--deep-redwood-green); color: var(--white);
+            border: 2px solid var(--deep-redwood-green); border-radius: 8px;
+            padding: 10px 20px; min-height: 0; font-size: 14px; font-weight: 600;
+            text-decoration: none; white-space: nowrap; line-height: 1.2;
+            transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+        }
+        .nav-cta:hover { background: #2D4738; border-color: #2D4738; color: var(--white); }
+        .nav-links .nav-cta { padding: 10px 20px; min-height: 0; font-size: 14px; }
+        .mobile-nav .mobile-cta { display: block; width: 100%; padding: 14px 20px; font-size: 16px; }
+</style>
 </head>
 <body>
 
@@ -526,14 +539,13 @@
                 <span class="nav-logo-text">Redwood Horizon</span>
             </a>
 
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
+                        <ul class="nav-links">
                 <li><a href="about.html" aria-current="page">About</a></li>
                 <li><a href="services.html">Services</a></li>
-                <li><a href="get-support.html">Get Support</a></li>
                 <li><a href="partners.html">For Partners</a></li>
-                    <li><a href="faq.html">Common Questions</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
+                <li><a href="faq.html">Common Questions</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="get-support.html" class="btn btn-primary nav-cta">Get Support</a></li>
             </ul>
 
             <button class="hamburger" aria-label="Toggle mobile menu" aria-expanded="false" id="hamburger-btn">
@@ -545,15 +557,14 @@
 
         <div class="mobile-nav" id="mobile-nav">
             <ul>
-                <li><a href="index.html">Home</a></li>
                 <li><a href="about.html" aria-current="page">About</a></li>
                 <li><a href="services.html">Services</a></li>
-                <li><a href="get-support.html">Get Support</a></li>
                 <li><a href="partners.html">For Partners</a></li>
-                    <li><a href="faq.html">Common Questions</a></li>
+                <li><a href="faq.html">Common Questions</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
-        </div>
+            <a href="get-support.html" class="btn btn-primary nav-cta mobile-cta">Get Support</a>
+</div>
     </nav>
 
     <!-- ============ MAIN ============ -->
