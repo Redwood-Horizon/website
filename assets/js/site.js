@@ -36,7 +36,7 @@
         <div><h2>Explore</h2><a href="about.html">About</a><a href="services.html">Services</a><a href="partners.html">For Partners</a><a href="faq.html">Common Questions</a></div>
         <div><h2>Connect</h2><a href="get-support.html">Get Support</a><a href="contact.html">Contact</a><a href="careers.html">Careers</a></div>
         <div><h2>Serving</h2><p>Humboldt County<br>Mendocino County<br>Trinity County<br>Del Norte County</p></div>
-        <div><h2>Contact</h2><p><a href="contact.html" data-contact-email>Email us</a></p><p>California nonprofit public benefit corporation.</p></div>
+        <div><h2>Contact</h2><p><a href="contact.html" data-contact-email>Contact us</a></p><p>California nonprofit public benefit corporation.</p></div>
       </div>
       <div class="shell footer-bottom"><span>© 2026 Redwood Horizon. All rights reserved.</span><span><a href="privacy.html">Privacy</a> · <a href="accessibility.html">Accessibility</a></span></div>
     </footer>`;
@@ -50,6 +50,7 @@
     if (config.contactEmail) {
       el.textContent = config.contactEmail;
       el.href = `mailto:${config.contactEmail}`;
+      document.querySelectorAll('[data-contact-label]').forEach(label => { label.textContent = 'Email us'; });
     }
   });
   document.querySelectorAll('[data-media-email]').forEach(el => {

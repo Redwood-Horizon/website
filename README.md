@@ -1,5 +1,8 @@
 # Redwood Horizon website redesign
 
+> **v2 staging-refinement build:** This package includes the custom SVG icon system, redesigned Services audience section, Services closing CTA, and improved Get Support/provider-referral pathways. See `CHANGELOG-V2.md`.
+
+
 A dependency-free static website based on the approved visual direction: warm cream surfaces, deep redwood green, restrained nature motifs, large editorial typography, simplified navigation, stronger service hierarchy, and a warmer Get Support flow.
 
 ## Included
