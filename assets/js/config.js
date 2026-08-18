@@ -3,5 +3,5 @@
 window.REDWOOD_HORIZON_CONFIG = {
   contactEmail: "contact@redwoodhorizon.org",
   mediaEmail: "contact@redwoodhorizon.org",
-  formEndpoint: ""
+  formEndpoint: "/submit"
 };
