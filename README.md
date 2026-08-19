@@ -1,3 +1,5 @@
+# Redwood Horizon Website — v3 Human-Centered Prototype
+
 # Redwood Horizon website redesign
 
 > **v2 staging-refinement build:** This package includes the custom SVG icon system, redesigned Services audience section, Services closing CTA, and improved Get Support/provider-referral pathways. See `CHANGELOG-V2.md`.
@@ -56,3 +58,6 @@ For clean URLs such as `/services` instead of `/services.html`, configure redire
 
 ## Form/security note
 The front-end does not claim HIPAA compliance. If the Get Support form will collect protected health information, assess the complete hosting/form-processing/storage workflow and any necessary BAA before using it for PHI.
+
+
+See `PHOTO-CREDITS.md` for the representative stock imagery used in this prototype.

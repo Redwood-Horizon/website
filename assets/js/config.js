@@ -1,7 +1,7 @@
 /* Redwood Horizon site settings.
-   Add existing public contact email + form endpoint before launch. */
+   Add the existing public contact email and form endpoint before deployment. */
 window.REDWOOD_HORIZON_CONFIG = {
-  contactEmail: "contact@redwoodhorizon.org",
-  mediaEmail: "contact@redwoodhorizon.org",
-  formEndpoint: "/submit"
+  contactEmail: "",
+  mediaEmail: "",
+  formEndpoint: ""
 };
