@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://redwoodhorizon.org/sitemap.xml

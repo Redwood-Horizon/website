@@ -1,32 +1,34 @@
-// Cloudflare Pages Function — handles form submissions from get-support.html
-// POST /submit -> sends form data as email via SendGrid (or logs it for now)
-// See: https://developers.cloudflare.com/pages/functions/
+// Cloudflare Pages Function — handles form submissions for the redesign.
+// POST /submit with URL-encoded FormData -> sends email via SendGrid (or logs if no key).
+// Returns JSON with a status code so the client-side fetch in site.js can react.
+// Route: functions/submit.js is served at /submit (legacy Pages Function layout).
 
 export async function onRequest(context) {
     const { request } = context;
 
     if (request.method !== 'POST') {
-        return new Response('Method not allowed', { status: 405 });
+        return json({ ok: false, error: 'Method not allowed' }, 405);
     }
 
     try {
         const formData = await request.formData();
 
-        const firstName = formData.get('first-name') || '';
-        const lastName = formData.get('last-name') || '';
+        const firstName = formData.get('first_name') || formData.get('first-name') || '';
+        const lastName = formData.get('last_name') || formData.get('last-name') || '';
         const phone = formData.get('phone') || '';
         const email = formData.get('email') || '';
         const county = formData.get('county') || '';
         const role = formData.get('role') || '';
+        const topic = formData.get('topic') || '';
         const message = formData.get('message') || '';
-        const language = formData.get('language') || '';
+        const language = formData.get('preferred_language') || formData.get('language') || '';
 
-        // Basic validation: name required, at least phone or email
+        // Basic validation
         if (!firstName || !lastName) {
-            return redirectWithError(request, 'Please provide your name.');
+            return json({ ok: false, error: 'Please provide your name.' }, 400);
         }
         if (!phone && !email) {
-            return redirectWithError(request, 'Please provide a phone number or email so we can follow up.');
+            return json({ ok: false, error: 'Please provide a phone number or email so we can follow up.' }, 400);
         }
 
         // Build email body
@@ -38,11 +40,11 @@ export async function onRequest(context) {
             `Email: ${email || '—'}`,
             `County: ${county}`,
             `I am: ${role || '—'}`,
-            `Language: ${language}`,
+            topic ? `Topic: ${topic}` : `Language: ${language || '—'}`,
             `Message: ${message || '—'}`,
         ].join('\n');
 
-        // Try to send via SendGrid if API key is configured
+        // Send via SendGrid if an API key is configured
         const sendgridKey = context.env.SENDGRID_API_KEY;
         const toEmail = context.env.TO_EMAIL || 'contact@redwoodhorizon.org';
 
@@ -67,17 +69,18 @@ export async function onRequest(context) {
             console.log('Set SENDGRID_API_KEY and TO_EMAIL env vars in Cloudflare Pages dashboard.');
         }
 
-        // Redirect back to get-support page with success parameter
-        const url = new URL(request.url);
-        return Response.redirect(`${url.origin}/get-support.html?success=1`, 302);
-
+        return json({ ok: true }, 200);
     } catch (err) {
         console.error('Form submission error:', err);
-        return redirectWithError(request, 'Something went wrong. Please try again or email us directly.');
+        return json({ ok: false, error: 'Something went wrong. Please try again or email us directly.' }, 500);
     }
 }
 
-function redirectWithError(request, errorMsg) {
-    const url = new URL(request.url);
-    return Response.redirect(`${url.origin}/get-support.html?error=${encodeURIComponent(errorMsg)}`, 302);
+function json(payload, status) {
+    return new Response(JSON.stringify(payload), {
+        status,
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
 }
